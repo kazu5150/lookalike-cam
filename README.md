@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LookaLikeCam (そっくりさん診断カメラ)
 
-## Getting Started
+あなたの顔をAIが分析し、「どの有名人/スポーツ選手/偉人」に最も似ているかを診断するWebアプリケーションです。
+Gemini 2.0 (または 1.5 Flash) のマルチモーダル機能を利用して、視覚情報だけでなく、ウィットに富んだコメントも生成します。
 
-First, run the development server:
+## 機能
+
+- 📸 **写真アップロード**: ドラッグ&ドロップまたはファイル選択で写真をアップロード。
+- 🤖 **AI診断**: Google Gemini AIが顔の特徴を分析し、最も似ている人物を特定。
+- 📝 **理由とコメント**: なぜ似ているかの理由と、スタジアムアナウンサー風のユーモアのあるコメントを表示。
+- 🖼️ **比較画像**: Wikipedia APIを使用して、似ている人物の画像を取得して表示。
+
+## 必要要件
+
+- Node.js (v18以上推奨)
+- Google Gemini API キー
+
+## セットアップ手順
+
+### 1. リポジトリのクローン
+
+このリポジトリをローカルにクローンし、ディレクトリに移動します。
+
+```bash
+git clone https://github.com/kazu5150/lookalike-cam.git
+cd lookalike-cam
+```
+
+### 2. 依存関係のインストール
+
+```bash
+npm install
+# または
+yarn install
+```
+
+### 3. 環境変数の設定
+
+Gemini APIを使用するために、APIキーの設定が必要です。
+
+1.  [Google AI Studio](https://aistudio.google.com/app/apikey) からAPIキーを取得してください。
+2.  プロジェクトのルートディレクトリに `.env.local` ファイルを作成します（`.env.example` をコピーしてリネームすると簡単です）。
+
+```bash
+cp .env.example .env.local
+```
+
+3.  `.env.local` ファイルを開き、取得したAPIキーを設定します。
+
+```env
+GEMINI_API_KEY=あなたのAPIキーをここに貼り付け
+```
+
+> **注意**: `.env.local` ファイルには秘密鍵が含まれるため、GitHub等にはアップロードしないでください（`.gitignore` で除外されています）。
+
+### 4. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開くとアプリが使用できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 技術スタック
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 16 (App Router)
+- **AI Model**: Google Gemini 2.0 Flash / 1.5 Flash (@google/generative-ai)
+- **Styling**: Tailwind CSS
+- **API**: Wikipedia API (画像取得用)
 
-## Learn More
+## ライセンス
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License
